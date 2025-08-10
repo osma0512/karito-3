@@ -1,0 +1,175 @@
+body {
+    background: linear-gradient(120deg, #000 0%, #1a1a2e 100%);
+    animation: gradientMove 8s ease-in-out infinite alternate;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Estrellas animadas */
+.stars {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* Ondas luminosas */
+.waves {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.wave {
+    position: absolute;
+    width: 100vw;
+    height: 80px;
+    left: 0;
+    background: radial-gradient(circle, #b9f2ff33 0%, transparent 70%);
+    opacity: 0.5;
+    animation: waveMove 6s linear infinite;
+}
+
+@keyframes waveMove {
+    0% { top: 10%; }
+    100% { top: 80%; }
+}
+
+/* Brillos circulares */
+.glows {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.glow {
+    position: absolute;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffd70055 0%, transparent 80%);
+    opacity: 0.6;
+    animation: glowPulse 4s infinite alternate;
+}
+
+@keyframes glowPulse {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.8; }
+}
+
+/* Asegura que el contenido esté por encima de los efectos */
+.container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 0; /* Elimina espacios verticales */
+}
+
+.karolains {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #b9f2ff;
+    text-shadow: 0 0 10px #ffd700, 0 0 20px #fff;
+}
+
+/* Grammy sin giro automático, solo animación al acercar el mouse */
+.grammy {
+    filter: drop-shadow(0 0 20px #b9f2ff) drop-shadow(0 0 40px #ffd700);
+    transition: transform 0.3s, filter 0.3s;
+}
+
+.container:hover .grammy,
+.grammy:hover {
+    transform: scale(1.08) rotate(-7deg);
+    filter: drop-shadow(0 0 40px #b9f2ff) drop-shadow(0 0 60px #ffd700);
+}
+
+button {
+    background: linear-gradient(90deg, #b9f2ff 0%, #ffd700 100%);
+    color: #222;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: bold;
+    margin: 12px 8px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #ffd70088, 0 0 5px #b9f2ff88;
+    transition: transform 0.2s, box-shadow 0.2s;
+    z-index: 2;
+}
+
+button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px #ffd700cc, 0 0 10px #b9f2ffcc;
+}
+
+#welcome-msg {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(34,34,34,0.8);
+    color: #b9f2ff;
+    font-size: 2rem;
+    padding: 12px 32px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px #ffd70088;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeInMsg 2s forwards;
+    text-shadow: 0 0 10px #ffd700, 0 0 20px #fff;
+}
+
+@keyframes fadeInMsg {
+    to { opacity: 1; }
+}
+
+.tooltip {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(34,34,34,0.85);
+    color: #b9f2ff;
+    padding: 8px 18px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 5;
+    text-shadow: 0 0 10px #ffd700, 0 0 20px #fff;
+    box-shadow: 0 0 10px #ffd70088;
+}
+
+.container:hover .tooltip,
+.grammy:hover ~ .tooltip {
+    opacity: 1;
+}

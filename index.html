@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Grammy Diamante - Karolains</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="welcome-msg">¡Bienvenido al Grammy Diamante!</div>
+    <!-- Estrellas -->
+    <div class="stars">
+        <!-- Se generan con JS -->
+    </div>
+    <!-- Ondas luminosas -->
+    <div class="waves">
+        <div class="wave" style="top:20%;"></div>
+        <div class="wave" style="top:50%;"></div>
+    </div>
+    <!-- Brillos circulares -->
+    <div class="glows">
+        <div class="glow" style="top:30%; left:10%;"></div>
+        <div class="glow" style="top:70%; left:80%;"></div>
+    </div>
+    <div class="container">
+        <!-- Tooltip -->
+        <div class="tooltip">¡Este es tu Grammy Diamante!</div>
+        <!-- SVG tipo Grammy -->
+        <svg class="grammy" width="220" height="220" viewBox="0 0 220 220">
+            <!-- Base más detallada -->
+            <rect x="70" y="175" width="80" height="20" rx="8" fill="#444" stroke="#fff" stroke-width="2"/>
+            <ellipse cx="110" cy="195" rx="40" ry="10" fill="#222" opacity="0.7"/>
+            <!-- Disco brillante -->
+            <ellipse cx="110" cy="55" rx="38" ry="38" fill="url(#discoGrad)" stroke="#b9f2ff" stroke-width="4"/>
+            <!-- Gradiente para el disco -->
+            <defs>
+                <radialGradient id="discoGrad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#fff"/>
+                    <stop offset="60%" stop-color="#b9f2ff"/>
+                    <stop offset="100%" stop-color="#7fd8e5"/>
+                </radialGradient>
+            </defs>
+            <!-- Brazo del gramófono -->
+            <rect x="105" y="90" width="10" height="50" rx="5" fill="#ffd700" stroke="#fff8dc" stroke-width="2"/>
+            <!-- Trompeta del gramófono -->
+            <path d="M115,90 Q170,60 160,120 Q150,140 115,140" fill="#ffd700" stroke="#fff8dc" stroke-width="3"/>
+            <!-- Cuerpo principal -->
+            <polygon points="110,60 145,170 75,170" fill="url(#cuerpoGrad)" stroke="#fff8dc" stroke-width="3"/>
+            <linearGradient id="cuerpoGrad" x1="75" y1="170" x2="145" y2="60" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#ffd700"/>
+                <stop offset="100%" stop-color="#fff8dc"/>
+            </linearGradient>
+        </svg>
+        <h1 class="karolains">Karolains</h1>
+        <button id="play-music">Escuchar canción</button>
+        <button id="pause-music">Pausar canción</button>
+    </div>
+    <audio id="bg-music" src="cancion.mp3" loop controls style="display:none"></audio>
+
+    <script>
+const starsContainer = document.querySelector('.stars');
+for(let i=0; i<60; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.top = Math.random()*100 + 'vh';
+    star.style.left = Math.random()*100 + 'vw';
+    star.style.animationDuration = (1 + Math.random()*2) + 's';
+    starsContainer.appendChild(star);
+}
+
+const audio = document.getElementById('bg-music');
+document.getElementById('play-music').onclick = () => {
+    audio.style.display = "block"; // Muestra controles al reproducir
+    audio.play();
+};
+document.getElementById('pause-music').onclick = () => {
+    audio.pause();
+};
+
+document.querySelector('.grammy').onclick = () => {
+    for(let i=0; i<30; i++) {
+        const confeti = document.createElement('div');
+        confeti.className = 'confeti';
+        confeti.style.left = (50 + Math.random()*40 - 20) + 'vw';
+        confeti.style.top = (40 + Math.random()*20 - 10) + 'vh';
+        confeti.style.background = `linear-gradient(90deg, #ffd700, #b9f2ff)`;
+        confeti.style.animationDuration = (1 + Math.random()*2) + 's';
+        document.body.appendChild(confeti);
+        setTimeout(() => confeti.remove(), 2500);
+    }
+};
+</script>
+</body>
+</html>
